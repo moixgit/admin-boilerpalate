@@ -2,7 +2,7 @@ import Domain from "../services/Endpoint";
 import axios from "axios";
 import { setSession } from "../services/jwt.service";
 
-const createAuthStore = (set) => ({
+const createAuthStore = (set, get) => ({
   user: null,
   authLoading: false,
   tokenLoading: true,
@@ -40,7 +40,7 @@ const createAuthStore = (set) => ({
       }
     } catch (error) {
       console.log(error);
-      logoutService();
+      get().logoutService();
     }
   },
 });

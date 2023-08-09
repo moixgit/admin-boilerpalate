@@ -6,26 +6,29 @@ import NotFound from "./pages/notfound/NotFound.page";
 import Layout from "./components/misc/Layout";
 import ProtectedRoute from "./services/ProtectedRoute";
 import useBoundStore from "./store/Store";
-import "./App.css";
+import "./assets/css/App.css";
 import { useEffect } from "react";
+import UserReports from "./views/admin/default";
+import routes from "./routes";
 
 function App() {
   const navigate = useNavigate();
   const authCheck = useBoundStore((state) => {
     return state.user ? state.user : false;
   });
-  useEffect(() => {
-    // useEffect only if you want whole App private.
-    if (authCheck === false) navigate("login");
-    //remove this useEffect if You want some public pages in App.
-    //Route can handle private pages individually through ProtectedRoute
-  }, [authCheck]);
+
+  // useEffect(() => {
+  //   // useEffect only if you want whole App private.
+  //   if (authCheck === false) navigate("login");
+  //   //remove this useEffect if You want some public pages in App.
+  //   //Route can handle private pages individually through ProtectedRoute
+  // }, [authCheck]);
 
   return (
     <Layout>
-      <div style={{ textAlign: "center", marginTop: "40px" }}>
+      <div>
         <Routes>
-          <Route path="login" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route
             path="products"
             element={
@@ -34,6 +37,9 @@ function App() {
               </ProtectedRoute>
             }
           />
+          {routes.map((item) => (
+            <Route path={item.layout + item.path} element={item.component} />
+          ))}
           <Route path="/" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

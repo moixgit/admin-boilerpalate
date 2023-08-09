@@ -1,6 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useBoundStore from "../../store/Store";
+import { Box, useColorModeValue } from "@chakra-ui/react";
+import { SidebarContext } from "../../components/contexts/SidebarContext";
+import SignIn from "../../views/auth/signIn";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -19,39 +22,33 @@ const LoginPage = () => {
     if (!email || !password) return;
     loginService(email, password);
   };
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+
+  const authBg = useColorModeValue("white", "navy.900");
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <form onSubmit={onLogin}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gridGap: "20px",
-            background: "#d3d3d3",
-            padding: "50px",
-          }}
+    <Box>
+      <SidebarContext.Provider
+        value={{
+          toggleSidebar,
+          setToggleSidebar,
+        }}
+      >
+        <Box
+          bg={authBg}
+          float="right"
+          minHeight="100vh"
+          height="100%"
+          position="relative"
+          w="100%"
+          transition="all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)"
+          transitionDuration=".2s, .2s, .35s"
+          transitionProperty="top, bottom, width"
+          transitionTimingFunction="linear, linear, ease"
         >
-          <h1>This is the login page</h1>
-          <input
-            placeholder="email"
-            name="email"
-            type="email"
-            required
-            style={{ minWidth: "320px", height: "26px" }}
-          />
-          <input
-            placeholder="password"
-            name="password"
-            type="password"
-            required
-            style={{ minWidth: "320px", height: "26px" }}
-          />
-          <button type="submit">login</button>
-          {authLoading ? <h2>Loading...</h2> : null}
-        </div>
-      </form>
-    </div>
+          <SignIn />
+        </Box>
+      </SidebarContext.Provider>
+    </Box>
   );
 };
 
