@@ -30,42 +30,42 @@ import {
   Select,
   SimpleGrid,
   useColorModeValue,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 // Assets
-import Usa from "../../../assets/img/dashboards/usa.png";
+import Usa from '../../../assets/img/dashboards/usa.png';
 // Custom components
-import MiniCalendar from "../../../components/calendar/MiniCalendar";
-import MiniStatistics from "../../../components/card/MiniStatistics";
-import IconBox from "../../../components/icons/IconBox";
-import React from "react";
+import MiniCalendar from '../../../components/calendar/MiniCalendar';
+import MiniStatistics from '../../../components/Dashboard/card/VehicleCard';
+import IconBox from '../../../components/icons/IconBox';
+import React from 'react';
 import {
   MdAddTask,
   MdAttachMoney,
   MdBarChart,
   MdFileCopy,
-} from "react-icons/md";
-import CheckTable from "../../../views/admin/default/components/CheckTable";
-import ComplexTable from "../../../views/admin/default/components/ComplexTable";
-import DailyTraffic from "../../../views/admin/default/components/DailyTraffic";
-import PieCard from "../../../views/admin/default/components/PieCard";
-import Tasks from "../../../views/admin/default/components/Tasks";
-import TotalSpent from "../../../views/admin/default/components/TotalSpent";
-import WeeklyRevenue from "../../../views/admin/default/components/WeeklyRevenue";
-import {
-  columnsDataCheck,
-  columnsDataComplex,
-} from "../../../views/admin/default/variables/columnsData";
-import tableDataCheck from "../../../views/admin/default/variables/tableDataCheck.json";
-import tableDataComplex from "../../../views/admin/default/variables/tableDataComplex.json";
+} from 'react-icons/md';
+// import CheckTable from '../../../components/Dashboard/CheckTable';
+// import ComplexTable from '../../../components/Dashboard/ComplexTable';
+// import DailyTraffic from '../../../components/Dashboard/DailyTraffic';
+// import PieCard from '../../../components/Dashboard/PieCard';
+// import Tasks from '../../../components/Dashboard/Tasks';
+// import TotalSpent from '../../../components/Dashboard/TotalSpent';
+// import WeeklyRevenue from '../../../components/Dashboard/WeeklyRevenue';
+// import {
+//   columnsDataCheck,
+//   columnsDataComplex,
+// } from '../../../components/Dashboard/variables/columnsData';
+// import tableDataCheck from '../../../components/Dashboard/variables/tableDataCheck.json';
+// import tableDataComplex from '../../../components/Dashboard/variables/tableDataComplex.json';
 
 export default function UserReports() {
   // Chakra Color Mode
-  const brandColor = useColorModeValue("brand.500", "white");
-  const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
+  const brandColor = useColorModeValue('brand.500', 'white');
+  const boxBg = useColorModeValue('secondaryGray.300', 'whiteAlpha.100');
   return (
-    <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
-      <SimpleGrid
-        columns={{ base: 1, md: 2, lg: 3, "2xl": 6 }}
+    <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
+      {/* <SimpleGrid
+        columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }}
         gap="20px"
         mb="20px"
       >
@@ -167,7 +167,7 @@ export default function UserReports() {
           <Tasks />
           <MiniCalendar h="100%" minW="100%" selectRange={false} />
         </SimpleGrid>
-      </SimpleGrid>
+      </SimpleGrid> */}
     </Box>
   );
 }

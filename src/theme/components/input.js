@@ -36,6 +36,20 @@ export const inputStyles = {
             _placeholder: { color: "secondaryGray.600", fontWeight: "400" },
           },
         }),
+        custom: (props) => ({
+          field: {
+            fontWeight: "500",
+            color: mode("navy.700", "white")(props),
+            bg: mode("transparent", "transparent")(props),
+            border: "1px solid",
+            borderColor: mode(
+              "secondaryGray.100",
+              "rgba(135, 140, 189, 0.3)"
+            )(props),
+            borderRadius: "6px",
+            _placeholder: { color: "secondaryGray.600", fontWeight: "400" },
+          },
+        }),
         authSecondary: (props) => ({
           field: {
             bg: "transparent",

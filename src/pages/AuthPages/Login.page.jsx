@@ -4,6 +4,7 @@ import useBoundStore from "../../store/Store";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 import { SidebarContext } from "../../components/contexts/SidebarContext";
 import SignIn from "../../views/auth/signIn";
+import overlaybottom from "../../assets/overlay/overlayBottom.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,17 +12,11 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (!!user) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [user]);
 
-  const onLogin = async (e) => {
-    e.preventDefault();
-    let email = e.target.email?.value;
-    let password = e.target.password?.value;
-    if (!email || !password) return;
-    loginService(email, password);
-  };
+  
   const [toggleSidebar, setToggleSidebar] = useState(false);
 
   const authBg = useColorModeValue("white", "navy.900");
@@ -34,8 +29,7 @@ const LoginPage = () => {
         }}
       >
         <Box
-          bg={authBg}
-          float="right"
+          bg="#f6fbff"
           minHeight="100vh"
           height="100%"
           position="relative"

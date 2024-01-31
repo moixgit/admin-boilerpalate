@@ -12,54 +12,54 @@ import {
   MenuList,
   Text,
   useColorModeValue,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 // Custom Components
-import { ItemContent } from "../../components/menu/ItemContent";
-import { SearchBar } from "../../components/navbar/searchBar/SearchBar";
-import { SidebarResponsive } from "../../components/sidebar/Sidebar";
-import PropTypes from "prop-types";
-import React from "react";
+import { ItemContent } from '../../components/menu/ItemContent';
+import { SearchBar } from '../../components/navbar/searchBar/SearchBar';
+import { SidebarResponsive } from '../../components/sidebar/Sidebar';
+import PropTypes from 'prop-types';
+import React from 'react';
 // Assets
-import navImage from "../../assets/img/layout/Navbar.png";
-import { MdNotificationsNone, MdInfoOutline } from "react-icons/md";
-import { FaEthereum } from "react-icons/fa";
-import routes from "../../routes";
-import { ThemeEditor } from "./ThemeEditor";
+import navImage from '../../assets/img/layout/Navbar.png';
+import { MdNotificationsNone, MdInfoOutline } from 'react-icons/md';
+import { FaEthereum } from 'react-icons/fa';
+import routes from '../../routes';
+import { ThemeEditor } from './ThemeEditor';
 export default function HeaderLinks(props) {
   const { secondary } = props;
   // Chakra Color Mode
-  const navbarIcon = useColorModeValue("gray.400", "white");
-  let menuBg = useColorModeValue("white", "navy.800");
-  const textColor = useColorModeValue("secondaryGray.900", "white");
-  const textColorBrand = useColorModeValue("brand.700", "brand.400");
-  const ethColor = useColorModeValue("gray.700", "white");
-  const borderColor = useColorModeValue("#E6ECFA", "rgba(135, 140, 189, 0.3)");
-  const ethBg = useColorModeValue("secondaryGray.300", "navy.900");
-  const ethBox = useColorModeValue("white", "navy.800");
+  const navbarIcon = useColorModeValue('gray.400', 'white');
+  let menuBg = useColorModeValue('white', 'navy.800');
+  const textColor = useColorModeValue('secondaryGray.900', 'white');
+  const textColorBrand = useColorModeValue('brand.700', 'brand.400');
+  const ethColor = useColorModeValue('gray.700', 'white');
+  const borderColor = useColorModeValue('#E6ECFA', 'rgba(135, 140, 189, 0.3)');
+  const ethBg = useColorModeValue('secondaryGray.300', 'navy.900');
+  const ethBox = useColorModeValue('white', 'navy.800');
   const shadow = useColorModeValue(
-    "14px 17px 40px 4px rgba(112, 144, 176, 0.18)",
-    "14px 17px 40px 4px rgba(112, 144, 176, 0.06)",
+    '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
+    '14px 17px 40px 4px rgba(112, 144, 176, 0.06)',
   );
-  const borderButton = useColorModeValue("secondaryGray.500", "whiteAlpha.200");
+  const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
   return (
     <Flex
-      w={{ sm: "100%", md: "auto" }}
+      w={{ sm: '100%', md: 'auto' }}
       alignItems="center"
       flexDirection="row"
       bg={menuBg}
-      flexWrap={secondary ? { base: "wrap", md: "nowrap" } : "unset"}
+      flexWrap={secondary ? { base: 'wrap', md: 'nowrap' } : 'unset'}
       p="10px"
       borderRadius="30px"
       boxShadow={shadow}
     >
-      <SearchBar
+      {/* <SearchBar
         mb={secondary ? { base: "10px", md: "unset" } : "unset"}
         me="10px"
         borderRadius="30px"
-      />
-      <Flex
+      /> */}
+      {/* <Flex
         bg={ethBg}
-        display={secondary ? "flex" : "none"}
+        display={secondary ? 'flex' : 'none'}
         borderRadius="30px"
         ms="auto"
         p="6px"
@@ -85,13 +85,13 @@ export default function HeaderLinks(props) {
           me="6px"
         >
           1,924
-          <Text as="span" display={{ base: "none", md: "unset" }}>
-            {" "}
+          <Text as="span" display={{ base: 'none', md: 'unset' }}>
+            {' '}
             ETH
           </Text>
         </Text>
-      </Flex>
-      <SidebarResponsive routes={routes} />
+      </Flex> */}
+      {/* <SidebarResponsive routes={routes} /> */}
       <Menu>
         <MenuButton p="0px">
           <Icon
@@ -110,9 +110,9 @@ export default function HeaderLinks(props) {
           bg={menuBg}
           border="none"
           mt="22px"
-          me={{ base: "30px", md: "unset" }}
-          minW={{ base: "unset", md: "400px", xl: "450px" }}
-          maxW={{ base: "360px", md: "unset" }}
+          me={{ base: '30px', md: 'unset' }}
+          minW={{ base: 'unset', md: '400px', xl: '450px' }}
+          maxW={{ base: '360px', md: 'unset' }}
         >
           <Flex jusitfy="space-between" w="100%" mb="20px">
             <Text fontSize="md" fontWeight="600" color={textColor}>
@@ -130,8 +130,8 @@ export default function HeaderLinks(props) {
           </Flex>
           <Flex flexDirection="column">
             <MenuItem
-              _hover={{ bg: "none" }}
-              _focus={{ bg: "none" }}
+              _hover={{ bg: 'none' }}
+              _focus={{ bg: 'none' }}
               px="0"
               borderRadius="8px"
               mb="10px"
@@ -139,8 +139,8 @@ export default function HeaderLinks(props) {
               <ItemContent info="Horizon UI Dashboard PRO" aName="Alicia" />
             </MenuItem>
             <MenuItem
-              _hover={{ bg: "none" }}
-              _focus={{ bg: "none" }}
+              _hover={{ bg: 'none' }}
+              _focus={{ bg: 'none' }}
               px="0"
               borderRadius="8px"
               mb="10px"
@@ -168,13 +168,13 @@ export default function HeaderLinks(props) {
         <MenuList
           boxShadow={shadow}
           p="20px"
-          me={{ base: "30px", md: "unset" }}
+          me={{ base: '30px', md: 'unset' }}
           borderRadius="20px"
           bg={menuBg}
           border="none"
           mt="22px"
-          minW={{ base: "unset" }}
-          maxW={{ base: "360px", md: "unset" }}
+          minW={{ base: 'unset' }}
+          maxW={{ base: '360px', md: 'unset' }}
         >
           <Image src={navImage} borderRadius="16px" mb="28px" />
           <Flex flexDirection="column">
@@ -224,7 +224,7 @@ export default function HeaderLinks(props) {
       <Menu>
         <MenuButton p="0px">
           <Avatar
-            _hover={{ cursor: "pointer" }}
+            _hover={{ cursor: 'pointer' }}
             color="white"
             name="Adela Parkson"
             bg="#11047A"
@@ -257,25 +257,25 @@ export default function HeaderLinks(props) {
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">
-            <MenuItem
+            {/* <MenuItem
               _hover={{ bg: "none" }}
               _focus={{ bg: "none" }}
               borderRadius="8px"
               px="14px"
             >
               <Text fontSize="sm">Profile Settings</Text>
-            </MenuItem>
-            <MenuItem
+            </MenuItem> */}
+            {/* <MenuItem
               _hover={{ bg: "none" }}
               _focus={{ bg: "none" }}
               borderRadius="8px"
               px="14px"
             >
               <Text fontSize="sm">Newsletter Settings</Text>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
-              _hover={{ bg: "none" }}
-              _focus={{ bg: "none" }}
+              _hover={{ bg: 'none' }}
+              _focus={{ bg: 'none' }}
               color="red.400"
               borderRadius="8px"
               px="14px"

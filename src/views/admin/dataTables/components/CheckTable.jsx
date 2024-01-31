@@ -9,18 +9,18 @@ import {
   Thead,
   Tr,
   useColorModeValue,
-} from "@chakra-ui/react";
-import React, { useMemo } from "react";
+} from '@chakra-ui/react';
+import React, { useMemo } from 'react';
 import {
   useGlobalFilter,
   usePagination,
   useSortBy,
   useTable,
-} from "react-table";
+} from 'react-table';
 
 // Custom components
-import Card from "../../../../components/card/Card";
-import Menu from "../../../../components/menu/MainMenu";
+import Card from '../../../../components/Dashboard/card/Card';
+import Menu from '../../../../components/menu/MainMenu';
 export default function CheckTable(props) {
   const { columnsData, tableData } = props;
 
@@ -47,14 +47,14 @@ export default function CheckTable(props) {
   } = tableInstance;
   initialState.pageSize = 11;
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
-  const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+  const textColor = useColorModeValue('secondaryGray.900', 'white');
+  const borderColor = useColorModeValue('gray.200', 'whiteAlpha.100');
   return (
     <Card
       direction="column"
       w="100%"
       px="0px"
-      overflowX={{ sm: "scroll", lg: "hidden" }}
+      overflowX={{ sm: 'scroll', lg: 'hidden' }}
     >
       <Flex px="25px" justify="space-between" mb="20px" align="center">
         <Text
@@ -81,10 +81,10 @@ export default function CheckTable(props) {
                   <Flex
                     justify="space-between"
                     align="center"
-                    fontSize={{ sm: "10px", lg: "12px" }}
+                    fontSize={{ sm: '10px', lg: '12px' }}
                     color="gray.400"
                   >
-                    {column.render("Header")}
+                    {column.render('Header')}
                   </Flex>
                 </Th>
               ))}
@@ -97,8 +97,8 @@ export default function CheckTable(props) {
             return (
               <Tr {...row.getRowProps()} key={index}>
                 {row.cells.map((cell, index) => {
-                  let data = "";
-                  if (cell.column.Header === "NAME") {
+                  let data = '';
+                  if (cell.column.Header === 'NAME') {
                     data = (
                       <Flex align="center">
                         <Checkbox
@@ -111,7 +111,7 @@ export default function CheckTable(props) {
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "PROGRESS") {
+                  } else if (cell.column.Header === 'PROGRESS') {
                     data = (
                       <Flex align="center">
                         <Text
@@ -124,13 +124,13 @@ export default function CheckTable(props) {
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "QUANTITY") {
+                  } else if (cell.column.Header === 'QUANTITY') {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "DATE") {
+                  } else if (cell.column.Header === 'DATE') {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
                         {cell.value}
@@ -141,8 +141,8 @@ export default function CheckTable(props) {
                     <Td
                       {...cell.getCellProps()}
                       key={index}
-                      fontSize={{ sm: "14px" }}
-                      minW={{ sm: "150px", md: "200px", lg: "auto" }}
+                      fontSize={{ sm: '14px' }}
+                      minW={{ sm: '150px', md: '200px', lg: 'auto' }}
                       borderColor="transparent"
                     >
                       {data}

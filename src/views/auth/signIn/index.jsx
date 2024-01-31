@@ -1,26 +1,3 @@
-/* eslint-disable */
-/*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
- |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
- |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
-=========================================================
-* Horizon UI - v1.1.0
-=========================================================
-
-* Product Page: https://www.horizon-ui.com/
-* Copyright 2023 Horizon UI (https://www.horizon-ui.com/)
-
-* Designed and Coded by Simmmple
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
 import React from "react";
 import { NavLink } from "react-router-dom";
 // Chakra imports
@@ -47,8 +24,14 @@ import illustration from "../../../assets/img/auth/auth.png";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
+import logo from "../../../assets/logo/logo.svg";
+import overlaybottom from "../../../assets/overlay/overlayBottom.png";
+import useBoundStore from "../../../store/Store";
+// Validation
+import * as Yup from "yup";
 
 function SignIn() {
+  const { loginService, authLoading, user } = useBoundStore((state) => state);
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");
   const textColorSecondary = "gray.400";
@@ -59,78 +42,81 @@ function SignIn() {
   const googleText = useColorModeValue("navy.700", "white");
   const googleHover = useColorModeValue(
     { bg: "gray.200" },
-    { bg: "whiteAlpha.300" },
+    { bg: "whiteAlpha.300" }
   );
   const googleActive = useColorModeValue(
     { bg: "secondaryGray.300" },
-    { bg: "whiteAlpha.200" },
+    { bg: "whiteAlpha.200" }
   );
   const [show, setShow] = React.useState(false);
+  const [email, setEmail]= React.useState('');
+  const [password, setPassword]= React.useState('');
+  const [passwordError, setPasswordError] = React.useState(null);
+  const [emailError, setEmailError] = React.useState(null);
   const handleClick = () => setShow(!show);
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required("Email is required").email("Invalid email"),
+    password: Yup.string().required("Password is required"),
+  });
+
+  const handleLogin = async () => {
+    debugger
+  console.log(email,password)
+    try {
+      await validationSchema.validate({ email, password }, { abortEarly: false });
+      loginService(email, password);
+    } catch (error) {
+      if (error.inner) {
+        error.inner.forEach((err) => {
+          if (err.path === "email") {
+            setEmailError(err.message);
+          } else if (err.path === "password") {
+            setPasswordError(err.message);
+          }
+        });
+      }
+    }
+  };
+  
   return (
     <DefaultAuth illustrationBackground={illustration} image={illustration}>
       <Flex
-        maxW={{ base: "100%", md: "max-content" }}
+        bg="white"
+        maxW={{ base: "100%", lg: "500px", md: "500px", sm: "420px" }}
         w="100%"
-        mx={{ base: "auto", lg: "0px" }}
-        me="auto"
-        h="100%"
-        alignItems="start"
+        mx={{ base: "auto", lg: "auto" }}
+         me="auto"
+        borderRadius="20px"
+        alignItems="center"
         justifyContent="center"
-        mb={{ base: "30px", md: "60px" }}
-        px={{ base: "25px", md: "0px" }}
+        // mb={{ base: "30px", md: "60px" }}
+        px={{ base: "25px", md: "40px" }}
+        py={{ md: "40px" }}
         mt={{ base: "40px", md: "14vh" }}
         flexDirection="column"
+        position="relative"
       >
-        <Box me="auto">
-          <Heading color={textColor} fontSize="36px" mb="10px">
-            Sign In
-          </Heading>
-          <Text
-            mb="36px"
-            ms="4px"
-            color={textColorSecondary}
-            fontWeight="400"
-            fontSize="md"
-          >
-            Enter your email and password to sign in!
-          </Text>
-        </Box>
         <Flex
+          alignItems="center"
+          justifyContent="center"
           zIndex="2"
           direction="column"
           w={{ base: "100%", md: "420px" }}
           maxW="100%"
           background="transparent"
           borderRadius="15px"
-          mx={{ base: "auto", lg: "unset" }}
+          mx={{ base: "auto", lg: "auto" }}
           me="auto"
-          mb={{ base: "20px", md: "auto" }}
+          mb={{ base: "auto", md: "auto" }}
+          py={{ md: "10px", sm: "20px" }}
         >
-          <Button
-            fontSize="sm"
-            me="0px"
-            mb="26px"
-            py="15px"
-            h="50px"
-            borderRadius="16px"
-            bg={googleBg}
-            color={googleText}
-            fontWeight="500"
-            _hover={googleHover}
-            _active={googleActive}
-            _focus={googleActive}
-          >
-            <Icon as={FcGoogle} w="20px" h="20px" me="10px" />
-            Sign in with Google
-          </Button>
-          <Flex align="center" mb="25px">
-            <HSeparator />
-            <Text color="gray.400" mx="14px">
-              or
-            </Text>
-            <HSeparator />
-          </Flex>
+          <img src={logo} width="173px" height="90px"></img>
+
+          <Heading color={textColor} fontSize="30px" mb="10px" mt="20px">
+            Login
+          </Heading>
+
           <FormControl>
             <FormLabel
               display="flex"
@@ -144,14 +130,18 @@ function SignIn() {
             </FormLabel>
             <Input
               isRequired={true}
-              variant="auth"
+              variant="custom"
               fontSize="sm"
               ms={{ base: "0px", md: "0px" }}
               type="email"
-              placeholder="mail@simmmple.com"
+              placeholder="xaheen@1234.com"
               mb="24px"
               fontWeight="500"
               size="lg"
+              isInvalid={!!emailError}
+              errorBorderColor="red.300" 
+              onFocus={() => setEmailError(null)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <FormLabel
               ms="4px"
@@ -166,11 +156,15 @@ function SignIn() {
               <Input
                 isRequired={true}
                 fontSize="sm"
-                placeholder="Min. 8 characters"
+                placeholder="********"
                 mb="24px"
                 size="lg"
                 type={show ? "text" : "password"}
-                variant="auth"
+                variant="custom"
+                isInvalid={!!passwordError}
+                errorBorderColor="red.300" 
+                onFocus={() => setPasswordError(null)}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <InputRightElement display="flex" alignItems="center" mt="4px">
                 <Icon
@@ -181,23 +175,7 @@ function SignIn() {
                 />
               </InputRightElement>
             </InputGroup>
-            <Flex justifyContent="space-between" align="center" mb="24px">
-              <FormControl display="flex" alignItems="center">
-                <Checkbox
-                  id="remember-login"
-                  colorScheme="brandScheme"
-                  me="10px"
-                />
-                <FormLabel
-                  htmlFor="remember-login"
-                  mb="0"
-                  fontWeight="normal"
-                  color={textColor}
-                  fontSize="sm"
-                >
-                  Keep me logged in
-                </FormLabel>
-              </FormControl>
+            <Flex justifyContent="flex-end" align="center" mb="24px">
               <NavLink to="/auth/forgot-password">
                 <Text
                   color={textColorBrand}
@@ -210,39 +188,24 @@ function SignIn() {
               </NavLink>
             </Flex>
             <Button
-              fontSize="sm"
-              variant="brand"
+              fontSize="18px"
+              variant="custom"
               fontWeight="500"
               w="100%"
               h="50"
-              mb="24px"
+              mb="20px"
+              mt="20px"
+              type="submit"
+              onClick={() => handleLogin()}
+
             >
-              Sign In
+              Login
             </Button>
           </FormControl>
-          <Flex
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="start"
-            maxW="100%"
-            mt="0px"
-          >
-            <Text color={textColorDetails} fontWeight="400" fontSize="14px">
-              Not registered yet?
-              <NavLink to="/auth/sign-up">
-                <Text
-                  color={textColorBrand}
-                  as="span"
-                  ms="5px"
-                  fontWeight="500"
-                >
-                  Create an Account
-                </Text>
-              </NavLink>
-            </Text>
-          </Flex>
         </Flex>
       </Flex>
+
+      {/* </div> */}
     </DefaultAuth>
   );
 }

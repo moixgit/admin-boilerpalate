@@ -14,7 +14,7 @@ export function SidebarLinks(props) {
   );
   let activeIcon = useColorModeValue("brand.500", "white");
   let textColor = useColorModeValue("secondaryGray.500", "white");
-  let brandColor = useColorModeValue("brand.500", "brand.400");
+  let brandColor = useColorModeValue("white.500", "brand.400");
 
   const { routes } = props;
 
@@ -31,7 +31,7 @@ export function SidebarLinks(props) {
           <>
             <Text
               fontSize={"md"}
-              color={activeColor}
+              color="white"
               fontWeight='bold'
               mx='auto'
               ps={{
@@ -52,30 +52,32 @@ export function SidebarLinks(props) {
         route.layout === "/rtl"
       ) {
         return (
-          <NavLink key={index} to={route.layout + route.path}>
+          <NavLink key={index} to={ route.path}>
             {route.icon ? (
               <Box>
                 <HStack
                   spacing={
                     activeRoute(route.path.toLowerCase()) ? "22px" : "26px"
                   }
-                  py='5px'
-                  ps='10px'>
-                  <Flex w='100%' alignItems='center' justifyContent='center'>
+                  py='15px'
+                  ps='0px'>
+                  <Flex w='100%' flexDirection="column" alignItems='center' justifyContent='center'>
                     <Box
                       color={
                         activeRoute(route.path.toLowerCase())
                           ? activeIcon
                           : textColor
                       }
-                      me='18px'>
+                      >
                       {route.icon}
                     </Box>
                     <Text
-                      me='auto'
+                    mt="4px"
+                      // me='auto'
+                      fontSize='12px'
                       color={
                         activeRoute(route.path.toLowerCase())
-                          ? activeColor
+                          ? "white"
                           : textColor
                       }
                       fontWeight={
@@ -86,16 +88,16 @@ export function SidebarLinks(props) {
                       {route.name}
                     </Text>
                   </Flex>
-                  <Box
+                  {/* <Box
                     h='36px'
                     w='4px'
                     bg={
                       activeRoute(route.path.toLowerCase())
-                        ? brandColor
+                        ? "white"
                         : "transparent"
                     }
                     borderRadius='5px'
-                  />
+                  /> */}
                 </HStack>
               </Box>
             ) : (
